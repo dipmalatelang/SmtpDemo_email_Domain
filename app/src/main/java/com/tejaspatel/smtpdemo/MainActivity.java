@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+   String TAG ="";
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -12,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
       setContentView(R.layout.activity_main);
 
       sendMessage();
+//      sendmsg();
    }
 
    private void sendMessage() {
@@ -20,15 +22,29 @@ public class MainActivity extends AppCompatActivity {
          @Override
          public void run() {
             try {
-               GMailSender sender = new GMailSender("tera Email",
-                    "tera password");
-               sender.sendMail("kuch data", "message ka body",
-                    "tera mail id", "receiver ka mail id");
+               GMailSender sender = new GMailSender("support@cotravel.in",
+                    "Jiyakiyan@9");
+               sender.sendMail("Cotravel", "welcome",
+                    "support@cotravel.in", "dipaffwl@gmail.com");
+
+               Log.d(TAG, "run: "+sender);
             } catch (Exception e) {
                Log.e("SendMail", e.getMessage(), e);
             }
          }
 
       }).start();
+   }
+
+   private void sendmsg()
+   {
+
+      GMailSender sender = new GMailSender("support@cotravel.in","Jiyakiyan@9");
+      try {
+         sender.sendMail("Cotravel", "welcome",
+                 "support@cotravel.in", "dipaffwl@gmail.com");
+      } catch (Exception e) {
+         Log.e(TAG, "Failed sending email.", e);
+      }
    }
 }
